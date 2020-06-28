@@ -21,7 +21,11 @@
         <input type="text" name="lname" class="form-control" id="lname">
         <label for="email"> Your Email </label>
         <input type="email" name="email" class="form-control" id="email">
-        <input type="submit" name="submit" value="Send & Share" class="btn">
+        <input type="submit" name="submit" value="Send & Share" class="btn btn-primary">
+      </form>
+
+      <form action="delete.php" method="post">
+        <input type="submit" name="delete" value="Delete Bottom Record" class="btn btn-danger">
       </form>
     </main>
     <footer>
