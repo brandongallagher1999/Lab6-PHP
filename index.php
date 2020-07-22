@@ -15,14 +15,20 @@
     </header>
     <main>
       <form action="process.php" method="post">
+        <label for="username">Username</label>
+        <input type="text" name="username" class="form-control" id="username">
+        <label for="password">Password</label>
+        <input type="password" name="password" class="form-control" id="password">
         <label for="fname"> Your First Name  </label>
         <input type="text" name="fname" class="form-control" id="fname">
         <label for="lname"> Your Last Name  </label>
         <input type="text" name="lname" class="form-control" id="lname">
         <label for="email"> Your Email </label>
         <input type="email" name="email" class="form-control" id="email">
-        <input type="submit" name="submit" value="Send & Share" class="btn btn-primary">
+        <input type="submit" name="submit" value="Register" class="btn btn-primary">
       </form>
+
+      <a href="login.php">Login Page</a>
 
       <form action="delete.php" method="post">
         <input type="submit" name="delete" value="Delete Bottom Record" class="btn btn-danger">

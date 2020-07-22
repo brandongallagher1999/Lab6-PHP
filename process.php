@@ -23,6 +23,8 @@
 $first_name = filter_input(INPUT_POST, 'fname');
 $last_name = filter_input(INPUT_POST, 'lname');
 $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+$username = filter_input(INPUT_POST, "username");
+$password = filter_input(INPUT_POST, "password");
 
 //set up a flag variable
 
@@ -53,10 +55,15 @@ if ($ok === true) {
         require_once('connect.php'); // if the file's not included, include it again. in this case, it's the database object.
 
         // add a comment to explain the line of code below
-        $sql = "INSERT INTO persons VALUES (1, :firstname, :lastname, :email)"; // INSERT statement into table persons. you will need to change the 1st parameter depending on if you've already inserted before.
+        $sql = "INSERT INTO persons_new VALUES (2, :username, :password, :firstname, :lastname, :email)"; // INSERT statement into table persons. you will need to change the 1st parameter depending on if you've already inserted before.
         // add a comment to explain the line of code below
         $statement = $db->prepare($sql); // fill in the correct method
         // add a comment to explain the line of code below
+
+        $temp = password_hash($password, PASSWORD_DEFAULT);
+
+        $statement->bindParam(":username", $username);
+        $statement->bindParam(":password", $temp);
         $statement->bindParam(':firstname', $first_name);
         $statement->bindParam(':lastname', $last_name);  // binds all the variables in the sql statement to our HTML input values
         $statement->bindParam(':email', $email);
@@ -68,7 +75,7 @@ if ($ok === true) {
         echo "<p> Song added! Thanks for sharing! </p>";
 
         // add a comment to explain the line of code below
-       $statement->close(); // fill in the correct method
+        $statement->closeCursor(); // fill in the correct method
 
 
     } catch (PDOException $e) {
